@@ -6,15 +6,16 @@ export default makeStyles(() => ({
     },
     media:{
         height: 0,
-        paddingTop: '56.25%',
+        paddingTop: '90.25%',
     },
-    cardAction:{
+    cardActions:{
         display:'flex',
         justifyContent:'flex-end',
     },
     cardContent:{
         display: 'flex',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        
     },
 
 }))
