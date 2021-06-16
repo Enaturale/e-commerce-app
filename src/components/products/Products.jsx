@@ -4,21 +4,9 @@ import Product from "./Product/Product";
 import useStyles from './styles';
 
 
-//creating a products array
-const products = [
-  { id: 1, name: "Wigs", description: "Bone Straight Hair", price: "$5", image:'https://m.divaswigs.com/assets/cache/f/d/1/ef65ac148d0de0eb7d17a02eb82dd34b.jpg' },
-  {
-    id: 2,
-    name: "Bags",
-    description: "Courtney Zara Collection",
-    price: "$18",
-    image: 'https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/97/437236/1.jpg?2140'
-  },
-];
-
-const Products = () => {
+const Products = ({products}) => {
   const classes = useStyles();
-  
+
   return(
   <main className ={classes.content}> 
   <div className ={classes.toolbar}/>
