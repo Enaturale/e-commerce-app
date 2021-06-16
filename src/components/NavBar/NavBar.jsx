@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 
-import logo from '../assets/ecommerce.jpg' 
+import logo from '../../assets/ecommerce.jpg' 
 import useStyles from './styles'
 
 
@@ -20,9 +20,9 @@ const NavBar = () => {
     <>
       <AppBar postion="fixed" className={classes.appBar} color="inherit">
           <Toolbar>
-              <Typography variant ="h6" className={classes.title} color="inherit">
-                  <img  src={logo} alt="Commerce.js" className={classes.image} height="25px" />
-                  Pick"N"Shop
+              <Typography variant ="h5" className={classes.title} color="inherit">
+                  <img  src={logo} alt="Commerce.js" className={classes.image} height="30px" />
+                  Bee's Shop
               </Typography>
 
               <div className={classes.grow} />

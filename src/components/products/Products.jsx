@@ -18,6 +18,7 @@ const products = [
 
 const Products = () => {
   const classes = useStyles();
+  
   return(
   <main className ={classes.content}> 
   <div className ={classes.toolbar}/>
