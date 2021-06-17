@@ -14,7 +14,7 @@ import logo from '../../assets/ecommerce.jpg'
 import useStyles from './styles'
 
 
-const NavBar = () => {
+const NavBar = ({totalItems}) => {
     const classes=useStyles();
   return (
     <>
@@ -27,9 +27,9 @@ const NavBar = () => {
 
               <div className={classes.grow} />
 
-              <div className={classes.button}>
-                  <IconButton aria-label="Show Cart Items" color="inherit">
-                      <Badge badgeContent={2} color="secondary">
+              <div className={classes.button} style={{height: '30px'}}>
+                  <IconButton aria-label="Show Cart Items" color="inherit" style={{height: '30px', width:'70px'}}>
+                      <Badge badgeContent={totalItems} color="secondary">
                           <ShoppingCart />
                       </Badge>
                   </IconButton>
