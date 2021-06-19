@@ -44,10 +44,12 @@ const Cart = ({ cart, handleEmptyCart ,   handleRemoveFromCart ,   handleUpdateT
           </Button>
           <Button
             className={classes.checkoutButton}
+            component={Link} to="/checkout"
             variant="contained"
             size="large"
             type="button"
             color="primary"
+            
           >
             Checkout
           </Button>
