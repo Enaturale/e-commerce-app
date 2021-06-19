@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
 
 import { Products, NavBar, Cart } from "./components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
   //for products
@@ -27,22 +28,43 @@ const App = () => {
     setCart(item.cart);
   };
 
+  //funcion to handel the increase and decrease button of the cart items
+  const handleUpdateToCartQty = async (productId, quantity) => {
+    const {cart} = await commerce.cart.update(productId, {quantity});
+    setCart(cart)
+
+  }
+
+  const handleRemoveFromCart = async (productId) => {
+    const {cart} = await commerce.cart.remove(productId)
+  }
+
+
   useEffect(() => {
     fetchProducts();
     fetchCart();
   }, []);
 
   //console.log(products)
-  console.log(cart);
+  // console.log(cart);
 
   return (
-    <div>
-      <NavBar totalItems={cart.total_items} />
-      {/* <Products  products={products} onAddToCart={handleAddToCart}/>  */}
-      {/*passing the products from the commercejs backend as a prop */}
+    <Router>
+      <div>
+        <NavBar totalItems={cart.total_items} />
+        {/*passing the products from the commercejs backend as a prop */}
+        <Switch>
+          <Route exact path="/">
+            <Products products={products} onAddToCart={handleAddToCart} />
+          </Route>
 
-      <Cart cart={cart} />
-    </div>
+
+          <Route exact path="/cart">
+            <Cart cart={cart} />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
