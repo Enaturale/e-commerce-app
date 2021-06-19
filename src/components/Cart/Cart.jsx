@@ -2,16 +2,17 @@ import React from "react";
 import { Container, Typography, Button, Grid } from "@material-ui/core";
 import useStyles from "./styles";
 import CartItem from './CartItem/CartItem'
-import {Link} from 'react'
+import {Link} from 'react-router-dom'
 
-const Cart = ({ cart, handleEmptyCart ,   handleRemoveFromCart,   handleUpdateToCartQty }) => {
+const Cart = ({ cart, handleEmptyCart ,   handleRemoveFromCart ,   handleUpdateToCartQty }) => {
   const classes = useStyles();
   //const isEmpty ; //variable to say that the cart is empty
 
   //function to return jsx if the cart is found empty
   const EmptyCart = () => (
     <Typography variant="subtitle1">     
-      You have no items in your cart. <Link to="/" className={classes.link}>Why not add some?</Link>
+      You have no items in your cart,
+       <Link to="/" className={classes.link}>Why not add some</Link>?
     </Typography>
   );
 

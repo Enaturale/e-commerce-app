@@ -24,8 +24,8 @@ const App = () => {
 
   //function for adding items to the cart
   const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
-    setCart(item.cart);
+    const cart = await commerce.cart.add(productId, quantity);
+    setCart(cart);
   };
 
   //funcion to handel the increase and decrease button of the cart items
@@ -39,7 +39,7 @@ const App = () => {
     const { cart } = await commerce.cart.remove(productId);
     setCart(cart);
   };
-
+ 
   //function to handle the emptying of the cart
   const handleEmptyCart = async () => {
     const { cart } = await commerce.cart.empty();
@@ -66,7 +66,7 @@ const App = () => {
 
           <Route exact path="/cart">
             <Cart
-              cart={cart}
+              cart={cart} 
               handleEmptyCart = {handleEmptyCart}
               handleRemoveFromCart = {handleRemoveFromCart}
               handleUpdateToCartQty = {handleUpdateToCartQty}
