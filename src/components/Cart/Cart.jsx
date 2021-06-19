@@ -4,7 +4,7 @@ import useStyles from "./styles";
 import CartItem from './CartItem/CartItem'
 import {Link} from 'react'
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, handleEmptyCart ,   handleRemoveFromCart,   handleUpdateToCartQty }) => {
   const classes = useStyles();
   //const isEmpty ; //variable to say that the cart is empty
 
@@ -21,7 +21,7 @@ const Cart = ({ cart }) => {
       <Grid container spacing={3} >
         {cart.line_items.map((item) => (
           <Grid item xs={12} sm={4} key={item.id}>
-            <CartItem  item={item} />
+            <CartItem  item={item}  onUpdateCartQty={handleUpdateToCartQty} onRemoveFromCart={handleRemoveFromCart} />
           </Grid>
         ))}
       </Grid>
@@ -37,6 +37,7 @@ const Cart = ({ cart }) => {
             size="large"
             type="button"
             color="secondary"
+            onClick={handleEmptyCart}
           >
             Empty Cart
           </Button>

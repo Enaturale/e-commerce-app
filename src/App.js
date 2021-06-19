@@ -30,15 +30,21 @@ const App = () => {
 
   //funcion to handel the increase and decrease button of the cart items
   const handleUpdateToCartQty = async (productId, quantity) => {
-    const {cart} = await commerce.cart.update(productId, {quantity});
-    setCart(cart)
+    const { cart } = await commerce.cart.update(productId, { quantity });
+    setCart(cart);
+  };
 
-  }
-
+  //function to handle the removal of an item from the cart
   const handleRemoveFromCart = async (productId) => {
-    const {cart} = await commerce.cart.remove(productId)
-  }
+    const { cart } = await commerce.cart.remove(productId);
+    setCart(cart);
+  };
 
+  //function to handle the emptying of the cart
+  const handleEmptyCart = async () => {
+    const { cart } = await commerce.cart.empty();
+    setCart(cart);
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -58,9 +64,13 @@ const App = () => {
             <Products products={products} onAddToCart={handleAddToCart} />
           </Route>
 
-
           <Route exact path="/cart">
-            <Cart cart={cart} />
+            <Cart
+              cart={cart}
+              handleEmptyCart = {handleEmptyCart}
+              handleRemoveFromCart = {handleRemoveFromCart}
+              handleUpdateToCartQty = {handleUpdateToCartQty}
+            />
           </Route>
         </Switch>
       </div>
