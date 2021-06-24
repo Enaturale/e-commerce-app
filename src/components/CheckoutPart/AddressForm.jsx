@@ -32,6 +32,13 @@ const AddressForm = ({checkoutToken}) => {
         setShippingSubdivisions(subdivisions);
         setShippingSubdivision(Object.keys(subdivisions)[0]);
     }
+    
+    //to fetch shipping Options
+    const fetchShippingOptions = async (checkoutTokenId, country, region =null) => {
+        const options = await commerce.checkout.getShippingOptions(checkoutTokenId, {country, region});
+        setShippingOptions(options);
+        setShippingOption(options[0].id);        
+    }
 
     useEffect(() =>{
         fetchShippingCountries(checkoutToken.id) 
@@ -39,11 +46,16 @@ const AddressForm = ({checkoutToken}) => {
 
     useEffect(() => {
         if(shippingCountry) fetchSubdivisions(shippingCountry)
-    }, [shippingCountry])
+    }, [shippingCountry]);
+
+    useEffect(() => {
+        if(shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision)
+    }, [shippingSubdivision]);
 
     const selectCountries = Object.entries(shippingCountries).map(([code, name]) => ({id: code, label: name}))
     //console.log(selectCountries)
     const selectSubdivisions = Object.entries(shippingSubdivisions).map(([code, name]) => ({id: code, label: name}))
+    const selectOptions = shippingOptions.map((sO) => ({id: sO.id, label: `${sO.description} - (${sO.price.formmatted_with_symbol})`}) )
 
 
     
@@ -83,14 +95,17 @@ const AddressForm = ({checkoutToken}) => {
                                 ))}                                
                             </Select>
                         </Grid>
-                        {/* <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Options</InputLabel>
-                            <Select value={} fullWidth onChange={}>
-                                <MenuItem key={} value={}>
-                                    Select Me
-                                </MenuItem>
+                            <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
+                            {selectOptions.map((option) =>(
+                                    <MenuItem key={option.id} value={option.id}>
+                                    {option.label}
+                                    </MenuItem>
+
+                                ))} 
                             </Select>
-                        </Grid> */}
+                        </Grid>
                     </Grid>
                 </form>
             </FormProvider>
